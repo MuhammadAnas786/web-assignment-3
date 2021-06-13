@@ -63,7 +63,7 @@ window.onload = function() {
    if(localStorage.getItem('id')){
        let x=localStorage.getItem('id');
     //    console
-    let url=`http://localhost:3000/api/v1/${x}`
+    let url=`https://faculty-app1.herokuapp.com/api/v1/${x}`
     fetch(url).then(res=>{
         
         res.json().then(data=>{
@@ -116,7 +116,7 @@ function Submit(event){
        let course_code=document.getElementById("myForm").elements.namedItem("course_code").value;
        let phone_number=document.getElementById("myForm").elements.namedItem("phone").value.split(',');
 
-        let url=`http://localhost:3000/api/v1/`
+        let url=`https://faculty-app1.herokuapp.com/api/v1/`
         let object={
     name,email,gender,address,course_code,phone_number
 
@@ -125,7 +125,7 @@ let method = 'POST'
 if(localStorage.getItem('id'))
 {
 let id = localStorage.getItem('id')
-url = `http://localhost:3000/api/v1/${id}`
+url = `https://faculty-app1.herokuapp.com/api/v1/${id}`
 method = 'PUT'
 }
 

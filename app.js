@@ -31,7 +31,7 @@ app.use('/api/v1/', indexRouter);
 
 
 let PORT = 3000
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server started on port ${PORT}`)
   // console.log(process.env.NODE_ENV)
 })

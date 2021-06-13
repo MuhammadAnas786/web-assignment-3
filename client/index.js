@@ -118,7 +118,7 @@ function UpdateForm(event) {
 
 
 function Delete(event) {
-    let  url=`http://localhost:3000/api/v1/${event.id}`
+    let  url=`https://faculty-app1.herokuapp.com/api/v1/${event.id}`
    let options = {
        method: 'DELETE',
        headers: {
