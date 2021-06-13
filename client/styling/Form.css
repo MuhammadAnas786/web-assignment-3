@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+@font-face {
+    font-family: monster;
+    src: url(../typography/Montserrat/Montserrat-Regular.ttf);
+    /* src: url(/typography/Montserrat/Montserrat-SemiBold.ttf);
+    src: url(/typography/Montserrat/Montserrat-Thin.ttf);
+    src: url(/typography/Montserrat/Montserrat-Black.ttf);*/
+}
+
+@font-face {
+    font-family: monster2;
+    src: url(../typography/Montserrat/Montserrat-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: lato;
+    src: url(../typography/Roboto/Roboto-Medium.ttf);
+}
+
+html {
+    font-size: 16px;
+    font-weight: 300;
+    position: static;
+    font-family: "Monster", sans-serif;
+}
+
+input{     padding: .75rem 1.5rem;
+    font-size: 1.25rem;
+   margin: 2px;
+   border:2px solid black;
+   outline: none;
+   font-family: "Monster", sans-serif;
+	background-color: #ffffff78;
+
+}
+input::placeholder{
+	color: white;
+	font-family: "Monster", sans-serif;
+}
+.main{ margin-left: 40%;
+	 margin-top: 100px;
+	align-content: center;
+}
+
+.BackStyle{
+	font-size: 35px;
+	color: white;
+	position: sticky;
+	left: 40px;
+	top:3%;
+	cursor: pointer;
+}
+.BackStyle a {
+	text-decoration: none;
+	color: white;
+}
+
+body{
+	height: 100vh;
+		background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(bantauy.jpg);
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: left;
+}
+p{ color: #F7F4F4; font-family: "Monster", sans-serif; margin-top: 30px;
+}
+.button{
+	background-color: #E86C0C;
+	border-color: antiquewhite;
+	color:black;border-right-color: aquamarine;border-bottom-color: aquamarine; margin-top: 20px;margin-left: 210px;
+}
+.Hide{
+	display: none;
+}
+.show{
+	display: block;
+}

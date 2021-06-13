@@ -1,0 +1,85 @@
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="./styling/update.css">
+	
+</head>
+
+<style>
+    .index_table {
+        text-transform: uppercase;
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    
+    tr,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<body>
+    <div class=" container ">
+        <div class="sub_container ">
+           
+            <div class="field-box ">
+                <label>
+               Value:
+                 </label>
+                <input type="text " class="Search" id="search" name="customerdetails"  onkeyup="search3(this)" placeholder="search ">
+            </div>
+		</div> 
+		
+
+		<div class="Sub_field2">
+			<div class="add buta mybutt" onclick="Add()"><img src="images/+.png"></div>
+			
+		</div>
+        <table class="index_table ">
+            <tr>
+                <td>id</td>
+                <td>Name</td>
+                <td>Gender</td>
+                <td>email</td>
+                <td>Phone number</td>
+                <td>course code</td>
+                <td>Address</td>
+                <td>Action</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<script src="index.js "></script>
+<script>
+    window.onload = function() {
+    localStorage.clear();
+    let url="http://localhost:3000/api/v1/"
+    fetch(url).then(res=>{
+        
+        res.json().then(data=>{
+            console.log(data)
+            DBData=data.data;
+            showData(data.data);
+
+            
+
+        }).catch(err=>{
+            console.log(err);
+            
+        });
+            if(res.status==200)
+           console.log()
+            else window.alert("No record found")
+        }).catch(err=>{
+            console.log(err);
+            window.alert("Server Not Connected")
+        });
+
+
+}
+
+</script>
+</html>

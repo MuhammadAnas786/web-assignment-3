@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="../styling/Form.css">
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <title>Untitled Document</title>
+</head>
+
+<body>
+    <div class="BackStyle">
+        <a href="index.html">   <ion-icon name="arrow-back-outline" >
+           
+        </ion-icon>
+    </a>
+    </div>
+    <div class="main" >
+        <form id="myForm"  >
+            <p>NAME:</p><br>
+            <input type="text" required placeholder="NAME" name="name" border="5px solid"><br>
+
+            <p>Address:</p><br>
+            <input type="text" required placeholder="street address" name="street_address" border="5px solid"><br>
+            <input type="text" required placeholder="city" name="city" border="5px solid"><br>
+            <input type="text" required placeholder="country" name="country" border="5px solid"><br>
+
+            <p>email:</p><br>
+            <input type="email" name="email" border="5px solid"><br>
+
+            <p>PHONE NUMBER:</p><br>
+            <input type="text" name="phone" border="5px solid"><br>
+            <p>ex: 03xxxxxxxx,03xxxxxxxx</p>
+
+            <p>Gender:</p><br>
+            <p>MALE</p><br>
+            <input type="radio" value="male" onchange="changeDiv(this)" checked="checked" name="gender">
+            
+            <p>FEMALE</p><br>
+            <input type="radio" value="female"  onchange="changeDiv(this)"  name="gender" border="5px solid">
+            
+            <p>others</p><br>
+            <input type="radio" value="others"  onchange="changeDiv(this)"  name="gender" border="5px solid">
+            
+       
+            <p>Course code:</p><br>
+            <input type="text" required placeholder="fp101" name="course_code" border="5px solid"><br>
+
+           
+            <input type="submit" onclick="Submit(event)" value="submit" width="50px" class="button">
+      
+      
+      
+        </form>
+    </div>
+   
+  
+</body>
+
+<script>
+
+window.onload = function() {
+   if(localStorage.getItem('id')){
+       let x=localStorage.getItem('id');
+    //    console
+    let url=`http://localhost:3000/api/v1/${x}`
+    fetch(url).then(res=>{
+        
+        res.json().then(data=>{
+            console.log(data)
+            DBData=data.data;
+            ShowData(data.data);
+
+            
+
+        }).catch(err=>{
+            console.log(err);
+            
+        });
+            if(res.status==200)
+           console.log()
+            else window.alert("some error")
+        }).catch(err=>{
+            console.log(err);
+            window.alert("error saving the credentials")
+        });
+    }
+
+}
+
+function ShowData(data){
+   data = data.data
+   document.getElementById("myForm").elements.namedItem("name").value=data.name;
+    document.getElementById("myForm").elements.namedItem("city").value=data.address.city;
+    document.getElementById("myForm").elements.namedItem("country").value=data.address.country;
+    document.getElementById("myForm").elements.namedItem("street_address").value=data.address.street_address;
+   document.getElementById("myForm").elements.namedItem("gender").value=data.gender;
+   document.getElementById("myForm").elements.namedItem("email").value=data.email;
+   document.getElementById("myForm").elements.namedItem("phone").value=data.phone_number
+   document.getElementById("myForm").elements.namedItem("course_code").value=data.course_code
+
+ 
+}
+
+function Submit(event){
+        event.preventDefault();
+       let name=document.getElementById("myForm").elements.namedItem("name").value;
+       let street_address=document.getElementById("myForm").elements.namedItem("street_address").value;
+       let city=document.getElementById("myForm").elements.namedItem("city").value;
+       let country=document.getElementById("myForm").elements.namedItem("country").value;
+       let address = {
+           street_address,city,country
+       }
+       let gender=document.getElementById("myForm").elements.namedItem("gender").value;
+       let email=document.getElementById("myForm").elements.namedItem("email").value;
+       let course_code=document.getElementById("myForm").elements.namedItem("course_code").value;
+       let phone_number=document.getElementById("myForm").elements.namedItem("phone").value.split(',');
+
+        let url=`http://localhost:3000/api/v1/`
+        let object={
+    name,email,gender,address,course_code,phone_number
+
+};
+let method = 'POST'
+if(localStorage.getItem('id'))
+{
+let id = localStorage.getItem('id')
+url = `http://localhost:3000/api/v1/${id}`
+method = 'PUT'
+}
+
+let options =  {
+      
+      // Adding method type
+      
+      method: method,
+        
+      // Adding body or contents to send
+      body: JSON.stringify(object),
+        
+      // Adding headers to the request
+      headers: {
+          "Content-type": "application/json; charset=UTF-8"
+      }
+  }
+            fetch(url,options).then(res=>{
+        
+        res.json().then(data=>{
+            console.log(data)
+            if(res.status==200)
+             window.location.href="index.html";
+            else window.alert(data.error)
+        }).catch(err=>{
+            console.log(err);
+            
+        });
+            
+        }).catch(err=>{
+            console.log(err);
+            window.alert("error saving the credentials")
+        });
+     
+    }
+
+
+</script>
+</html>
